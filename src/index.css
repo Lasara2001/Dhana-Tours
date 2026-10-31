@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors: replace with the exact values from your Figma */
+  --color-navy: #0b1426;
+  --color-navy-light: #14213d;
+  --color-gold: #d4a24c;
+  --color-gold-light: #e8c27a;
+
+  /* Fonts */
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-navy);
+  color: white;
+}
