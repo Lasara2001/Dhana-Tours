@@ -5,6 +5,10 @@
   --color-navy-light: #0a2540;
   --color-gold: #ffc346;
   --color-gold-light: #ffd479;
+  --color-cream: #f1f0ea;
+  --color-gold-dark: #b7791f;
+  --color-brand-blue: #0a3d91;
+  /* replace with your exact Figma blue */
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
