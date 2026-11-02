@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colors: replace with the exact values from your Figma */
-  --color-navy: #0b1426;
-  --color-navy-light: #14213d;
-  --color-gold: #d4a24c;
-  --color-gold-light: #e8c27a;
+  --color-navy: #001426;
+  --color-navy-light: #0a2540;
+  --color-gold: #ffc346;
+  --color-gold-light: #ffd479;
 
-  /* Fonts */
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  /* so the fixed navbar doesn't cover section titles */
 }
 
 body {
