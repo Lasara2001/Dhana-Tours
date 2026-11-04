@@ -48,7 +48,7 @@ export const services = [
         features: [
             'Unlimited flexibility to alter stops daily',
             'Driver food, lodging & fuel included',
-            'English or Russian speaking chauffeur choice',
+            'English speaking chauffeur choice',
         ],
         buttonLabel: 'Hire a Car with Driver',
         message: 'Hello Dhana Tours, I would like to rent a car with a driver.',
@@ -89,7 +89,7 @@ export const services = [
         icon: FaRoute,
         image: '/images/services/custom-itinerary.webp',
         description:
-            'Tell us your dates, interests and budget, and we will design a travel plan made just for you.',
+            'Tell us your dates, interests and budget and we will design a travel plan made just for you.',
         features: [
             'Plan built around your interests',
             'Hotel and route suggestions',
