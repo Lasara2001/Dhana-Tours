@@ -5,7 +5,6 @@ import {
     FaLeaf,
     FaHeadset,
 } from 'react-icons/fa'
-import { whatsappLink } from '../config/site'
 
 const features = [
     { icon: FaShieldAlt, line1: 'Safe & Reliable', line2: 'Transportation' },
@@ -14,10 +13,7 @@ const features = [
     { icon: FaHeadset, line1: 'Fully Insured &', line2: 'SLTDA Certified' },
 ]
 
-function Hero() {
-    const taxiLink = whatsappLink('Hello Dhana Tours, I would like to book a taxi.')
-    const tourLink = whatsappLink('Hello Dhana Tours, I would like to book a tour.')
-
+function Hero({ onBook }) {
     return (
         <section
             id="home"
@@ -52,24 +48,22 @@ function Hero() {
                     </p>
 
                     <div className="mt-8 flex flex-wrap gap-4">
-                        <a
-                            href={taxiLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            type="button"
+                            onClick={() => onBook('taxi')}
                             className="inline-flex items-center gap-3 rounded-xl bg-gold px-7 py-3 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
                         >
                             Taxi Booking
                             <FaArrowRight />
-                        </a>
-                        <a
-                            href={tourLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => onBook('tour')}
                             className="inline-flex items-center gap-3 rounded-xl border border-gold bg-white/10 px-7 py-3 text-sm font-semibold backdrop-blur transition-colors hover:bg-gold hover:text-navy"
                         >
                             Tour Booking
                             <FaArrowRight />
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
