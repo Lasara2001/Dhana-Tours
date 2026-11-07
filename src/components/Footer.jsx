@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaTripadvisor } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaTripadvisor, FaTelegramPlane } from 'react-icons/fa'
 import { SITE } from '../config/site'
 
 const quickLinks = [
@@ -14,6 +14,23 @@ const socialIcons = {
     facebook: FaFacebookF,
     instagram: FaInstagram,
     tripadvisor: FaTripadvisor,
+    telegram: FaTelegramPlane,
+}
+
+function formatSocialUrl(key, url) {
+    if (!url) return '#'
+    if (url.startsWith('http://') || url.startsWith('https://')) return url
+    const lower = key.toLowerCase()
+    if (lower === 'telegram') {
+        return `https://t.me/${url.replace(/^@/, '')}`
+    }
+    if (lower === 'facebook') {
+        return `https://facebook.com/${url.replace(/^\//, '')}`
+    }
+    if (lower === 'instagram') {
+        return `https://instagram.com/${url.replace(/^@/, '')}`
+    }
+    return `https://${url}`
 }
 
 function Footer() {
@@ -40,11 +57,12 @@ function Footer() {
                     {socials.length > 0 && (
                         <div className="mt-5 flex gap-3">
                             {socials.map(([key, url]) => {
-                                const Icon = socialIcons[key]
+                                const Icon = socialIcons[key.toLowerCase()]
+                                if (!Icon) return null
                                 return (
                                     <a
                                         key={key}
-                                        href={url}
+                                        href={formatSocialUrl(key, url)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={key}
