@@ -43,42 +43,37 @@ const features = [
     },
 ]
 
-// The "5.0 Google Reviews" badge on top of the photo
-function RatingBadge() {
-    const badgeClass =
-        'absolute -top-4 left-4 z-20 flex items-center gap-3 rounded-xl bg-white px-3 py-2 shadow-lg ring-1 ring-black/5'
+// Small number blocks under the intro text. Edit the values here.
+const stats = [
+    { value: '100%', label: 'Accident-Free Safety' },
+    { value: '8+', label: 'Years of Island Experience' },
+]
+
+// One style for both badges on the photo: white card + gold icon tile.
+// "position" says where it sits. "small" makes it more compact.
+// If "href" is empty it is a plain box, not a link.
+function FloatingBadge({ icon: Icon, position, href, small, children }) {
+    const className = `absolute z-20 flex items-center rounded-xl bg-white shadow-lg ring-1 ring-black/5 ${small ? 'gap-2 px-1.5 py-1' : 'gap-3 px-3.5 py-1.5'
+        } ${position}`
 
     const content = (
         <>
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gold/30 text-gold-dark">
-                <FaStar />
+            <span
+                className={`flex shrink-0 items-center justify-center rounded-lg bg-gold/30 text-gold-dark ${small ? 'h-7 w-7 text-sm' : 'h-7 w-7'
+                    }`}
+            >
+                <Icon />
             </span>
-            <div>
-                <p className="flex items-center gap-1.5 text-sm font-bold text-navy">
-                    {SITE.googleRating}
-                    <span className="flex gap-0.5 text-xs text-gold">
-                        {[1, 2, 3, 4, 5].map((n) => (
-                            <FaStar key={n} />
-                        ))}
-                    </span>
-                </p>
-                <p className="text-xs text-gray-600">Google Reviews</p>
-            </div>
+            <div>{children}</div>
         </>
     )
 
-    // If you added a Google reviews link in site.js, the badge becomes clickable
-    return SITE.googleReviewsUrl ? (
-        <a
-            href={SITE.googleReviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={badgeClass}
-        >
+    return href ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
             {content}
         </a>
     ) : (
-        <div className={badgeClass}>{content}</div>
+        <div className={className}>{content}</div>
     )
 }
 
@@ -86,15 +81,8 @@ function About() {
     return (
         <section id="about" className="bg-cream py-16 md:py-24">
             <div className="mx-auto max-w-7xl px-4 md:px-8">
-                <div className="text-center">
-                    <p className="flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-                        <span className="h-px w-8 bg-gold-dark" />
-                        About Us
-                        <span className="h-px w-8 bg-gold-dark" />
-                    </p>
-                </div>
-                {/* Photo + intro */}
-                <div className="grid items-center gap-8 lg:grid-cols-[2fr_3fr] lg:gap-16">
+                {/* Photo + intro (items-start keeps both tops level) */}
+                <div className="grid gap-10 lg:grid-cols-[2fr_3fr] lg:items-start lg:gap-16">
                     {/* Photo with a gold frame behind it */}
                     <div className="relative mb-4 mr-4">
                         <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border-2 border-gold-dark/50" />
@@ -109,21 +97,51 @@ function About() {
                                 }}
                             />
                         </div>
-                        <RatingBadge />
-                        <div className="absolute -bottom-4 right-6 z-20 flex items-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-xs font-semibold text-gold shadow-lg">
-                            <FaIdCard />
-                            Licensed & Insured
-                        </div>
+
+                        {/* Top-left badge: Google rating */}
+                        <FloatingBadge
+                            icon={FaStar}
+                            position="-top-4 left-4"
+                            href={SITE.googleReviewsUrl}
+                        >
+                            <p className="flex items-center gap-1.5 text-sm font-bold text-navy">
+                                {SITE.googleRating}
+                                <span className="flex gap-0.5 text-xs text-gold">
+                                    {[1, 2, 3, 4, 5].map((n) => (
+                                        <FaStar key={n} />
+                                    ))}
+                                </span>
+                            </p>
+                            <p className="text-xs text-gray-600">Google Reviews</p>
+                        </FloatingBadge>
+
+                        {/* Bottom-right badge: licensed and insured */}
+                        <FloatingBadge icon={FaIdCard} position="-bottom-4 right-6">
+                            <p className="text-sm font-bold text-navy">Licensed & Insured</p>
+                        </FloatingBadge>
                     </div>
 
                     {/* Intro text */}
                     <div>
-                        <h2 className="mt-4 text-3xl font-bold text-brand-blue md:text-4xl">
+                        <h2 className="text-3xl font-bold leading-tight font-heading text-brand-blue md:text-4xl">
                             Meet Your Dedicated Driver-Guide
                         </h2>
+                        <div className="mt-4 h-1 w-16 rounded bg-gold" />
                         <p className="mt-5 leading-relaxed text-navy/80">
-                            We are a family-owned Sri Lankan tour operator based in Weligama, Sri Lanka, specializing in personalized private tours and transfers. My name is Dhananjaya (Dhana) and I am a licensed driver with over 10 years of experience helping travelers from around the world explore the island safely and comfortably.
+                            We are a family-owned Sri Lankan tour operator based in Weligama, Sri Lanka, specializing in personalized private tours and transfers. My name is Dhananjaya (Dhana) and I am a licensed driver with over 8 years of experience helping travelers from around the world explore the island safely and comfortably.
                         </p>
+
+                        {/* Stat blocks */}
+                        <div className="mt-8 grid max-w-lg grid-cols-2 gap-4">
+                            {stats.map(({ value, label }) => (
+                                <div key={label} className="rounded-xl bg-gold/15 px-5 py-4">
+                                    <p className="font-heading text-2xl font-bold text-navy">
+                                        {value}
+                                    </p>
+                                    <p className="mt-1 text-xs text-gray-600">{label}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
