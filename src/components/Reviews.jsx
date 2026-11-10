@@ -1,6 +1,9 @@
-import { FaStar, FaQuoteLeft, FaWhatsapp } from 'react-icons/fa'
+import { useState } from 'react'
+import { FaStar, FaQuoteLeft, FaWhatsapp, FaGoogle } from 'react-icons/fa'
 import { reviews } from '../data/reviews'
-import { whatsappLink } from '../config/site'
+import { SITE, whatsappLink } from '../config/site'
+
+const LONG_TEXT = 260 // reviews longer than this get a "Read more" button
 
 function Stars({ rating }) {
     return (
@@ -9,6 +12,59 @@ function Stars({ rating }) {
                 <FaStar key={n} className={n <= rating ? 'text-gold' : 'text-white/20'} />
             ))}
         </div>
+    )
+}
+
+function ReviewCard({ review }) {
+    const [expanded, setExpanded] = useState(false)
+    const isLong = review.text.length > LONG_TEXT
+
+    return (
+        <article className="flex flex-col rounded-2xl border border-white/10 bg-navy-light p-6">
+            <Stars rating={review.rating} />
+
+            <div className="flex-1">
+                <FaQuoteLeft className="mt-4 text-gold/60" />
+
+                {/* whitespace-pre-line keeps the paragraph breaks of the review */}
+                <p
+                    className={`mt-3 whitespace-pre-line text-sm leading-relaxed text-white/85 ${isLong && !expanded ? 'line-clamp-6' : ''
+                        }`}
+                >
+                    {review.text}
+                </p>
+
+                {isLong && (
+                    <button
+                        type="button"
+                        onClick={() => setExpanded(!expanded)}
+                        aria-expanded={expanded}
+                        className="mt-2 text-xs font-semibold text-gold hover:underline"
+                    >
+                        {expanded ? 'Show less' : 'Read more'}
+                    </button>
+                )}
+
+                {review.translatedFrom && (
+                    <p className="mt-2 text-xs italic text-white/50">
+                        Translated from {review.translatedFrom}
+                    </p>
+                )}
+            </div>
+
+            <div className="mt-5 flex items-end justify-between gap-3 border-t border-white/10 pt-4">
+                <div>
+                    <p className="font-semibold text-gold">{review.name}</p>
+                    <p className="text-xs text-white/60">
+                        {[review.country, review.date].filter(Boolean).join(' · ')}
+                    </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs text-white/60">
+                    <FaGoogle />
+                    {review.source || 'Google'}
+                </span>
+            </div>
+        </article>
     )
 }
 
@@ -29,32 +85,54 @@ function Reviews() {
                     <h2 className="mt-4 font-heading text-3xl font-bold md:text-5xl">
                         What Our Guests Say
                     </h2>
+
+                    {/* Google summary bar */}
+                    {reviews.length > 0 && (
+                        <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-white/15 bg-navy-light px-6 py-3">
+                            <FaGoogle className="text-gold" />
+                            <span className="text-lg font-bold">{SITE.googleRating}</span>
+                            <Stars rating={Math.round(Number(SITE.googleRating))} />
+                            <span className="text-sm text-white/70">Google Reviews</span>
+                        </div>
+                    )}
                 </div>
 
                 {reviews.length > 0 ? (
-                    <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {reviews.map((review) => (
-                            <article
-                                key={review.id}
-                                className="flex flex-col rounded-2xl border border-white/10 bg-navy-light p-6"
-                            >
-                                <Stars rating={review.rating} />
-                                <FaQuoteLeft className="mt-4 text-gold/60" />
-                                <p className="mt-3 flex-1 text-sm leading-relaxed text-white/85">
-                                    {review.text}
-                                </p>
-                                <div className="mt-5 border-t border-white/10 pt-4">
-                                    <p className="font-semibold text-gold">{review.name}</p>
-                                    <p className="text-xs text-white/60">
-                                        {review.country}
-                                        {review.source ? ` · via ${review.source}` : ''}
-                                    </p>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
+                    <>
+                        <div className="mt-12 grid items-start gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {reviews.map((review) => (
+                                <ReviewCard key={review.id} review={review} />
+                            ))}
+                        </div>
+
+                        {/* Links to Google (only shown when you added the links in site.js) */}
+                        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                            {SITE.googleReviewsUrl && (
+                                <a
+                                    href={SITE.googleReviewsUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 rounded-xl border border-gold px-6 py-3 text-sm font-semibold transition-colors hover:bg-gold hover:text-navy"
+                                >
+                                    <FaGoogle />
+                                    See all reviews on Google
+                                </a>
+                            )}
+                            {SITE.googleWriteReviewUrl && (
+                                <a
+                                    href={SITE.googleWriteReviewUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
+                                >
+                                    <FaStar />
+                                    Write a review
+                                </a>
+                            )}
+                        </div>
+                    </>
                 ) : (
-                    // Shown when there are no real reviews yet
+                    // Shown when there are no reviews yet
                     <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-white/10 bg-navy-light p-8 text-center">
                         <p className="text-white/85">
                             Guest reviews will appear here soon. Traveled with us? We would love to
