@@ -9,7 +9,7 @@ export const SITE = {
 
     // Replace these with the real details
     phone: '+94 77 5975689',
-    email: 'info@example.com',
+    email: 'dhanatours98@gmail.com',
     location: 'Weligama, Sri Lanka',
     mapQuery: 'Dhana Tours Weligama', // what Google Maps should show, e.g. 'Negombo, Sri Lanka'
 

@@ -128,7 +128,7 @@ function About() {
                         </h2>
                         <div className="mt-4 h-1 w-16 rounded bg-gold" />
                         <p className="mt-5 leading-relaxed text-navy/80">
-                            We are a family-owned Sri Lankan tour operator based in Weligama, Sri Lanka, specializing in personalized private tours and transfers. My name is Dhananjaya (Dhana) and I am a licensed driver with over 8 years of experience helping travelers from around the world explore the island safely and comfortably.
+                            We are a family-owned Sri Lankan tour operator based in Weligama, Sri Lanka specializing in personalized private tours and transfers. My name is Dhananjaya (Dhana) and I am a licensed driver with over 8 years of experience helping travelers from around the world explore the island safely and comfortably.
                         </p>
 
                         {/* Stat blocks */}

@@ -1,0 +1,27 @@
+{
+    "nav": {
+        "home": "Home",
+        "services": "Our Services",
+        "packages": "Tour Packages",
+        "about": "About Us",
+        "reviews": "Reviews",
+        "contact": "Contact",
+        "bookWhatsapp": "Book via WhatsApp",
+        "toggleMenu": "Toggle menu",
+        "language": "Language"
+    },
+    "hero": {
+        "tagline": "Your Trusted Travel Partner",
+        "titleLine1": "Discover the Beauty of Sri Lanka with",
+        "titleBrand": "Dhana Tours",
+        "description": "We offer private tours, airport transfers and car rental with a professional driver. Explore breathtaking destinations, enjoy comfortable private transportation and discover Sri Lanka with a friendly, certified local driver-guide.",
+        "taxiBooking": "Taxi Booking",
+        "tourBooking": "Tour Booking",
+        "features": {
+            "safe": "Safe & Reliable Transportation",
+            "driver": "Experienced & Friendly Driver",
+            "packages": "Customizable Tour Packages",
+            "insured": "Fully Insured & SLTDA Certified"
+        }
+    }
+}

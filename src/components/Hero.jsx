@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import {
     FaArrowRight,
     FaShieldAlt,
@@ -6,14 +7,17 @@ import {
     FaHeadset,
 } from 'react-icons/fa'
 
+// "key" points to hero.features.safe, hero.features.driver ...
 const features = [
-    { icon: FaShieldAlt, line1: 'Safe & Reliable', line2: 'Transportation' },
-    { icon: FaUserTie, line1: 'Experienced &', line2: 'Friendly Driver' },
-    { icon: FaLeaf, line1: 'Customizable', line2: 'Tour Packages' },
-    { icon: FaHeadset, line1: 'Fully Insured &', line2: 'SLTDA Certified' },
+    { icon: FaShieldAlt, key: 'safe' },
+    { icon: FaUserTie, key: 'driver' },
+    { icon: FaLeaf, key: 'packages' },
+    { icon: FaHeadset, key: 'insured' },
 ]
 
 function Hero({ onBook }) {
+    const { t } = useTranslation()
+
     return (
         <section
             id="home"
@@ -30,21 +34,20 @@ function Hero({ onBook }) {
             <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-4 pb-10 pt-28 md:px-8">
                 <div className="max-w-xl">
                     <p className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-gold sm:text-sm">
-                        <span className="h-px w-8 bg-gold" />
-                        Your Trusted Travel Partner
-                        <span className="h-px w-8 bg-gold" />
+                        <span className="h-px w-8 shrink-0 bg-gold" />
+                        {t('hero.tagline')}
+                        <span className="h-px w-8 shrink-0 bg-gold" />
                     </p>
 
                     <h1 className="mt-6 font-heading text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-                        Discover the Beauty of Sri Lanka with{' '}
-                        <span className="block text-5xl sm:text-6xl md:text-7xl">Dhana Tours</span>
+                        {t('hero.titleLine1')}{' '}
+                        <span className="block text-5xl sm:text-6xl md:text-7xl">
+                            {t('hero.titleBrand')}
+                        </span>
                     </h1>
 
                     <p className="mt-6 text-sm font-medium italic leading-relaxed text-lime-200 sm:text-base">
-                        We offer private tours, airport transfers and car rental with a professional
-                        driver. Explore breathtaking destinations, enjoy comfortable private
-                        transportation and discover Sri Lanka with a friendly, certified local
-                        driver-guide.
+                        {t('hero.description')}
                     </p>
 
                     <div className="mt-8 flex flex-wrap gap-4">
@@ -53,7 +56,7 @@ function Hero({ onBook }) {
                             onClick={() => onBook('taxi')}
                             className="inline-flex items-center gap-3 rounded-xl bg-gold px-7 py-3 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
                         >
-                            Taxi Booking
+                            {t('hero.taxiBooking')}
                             <FaArrowRight />
                         </button>
                         <button
@@ -61,7 +64,7 @@ function Hero({ onBook }) {
                             onClick={() => onBook('tour')}
                             className="inline-flex items-center gap-3 rounded-xl border border-gold bg-white/10 px-7 py-3 text-sm font-semibold backdrop-blur transition-colors hover:bg-gold hover:text-navy"
                         >
-                            Tour Booking
+                            {t('hero.tourBooking')}
                             <FaArrowRight />
                         </button>
                     </div>
@@ -71,13 +74,11 @@ function Hero({ onBook }) {
             {/* Bottom feature strip */}
             <div className="relative z-10 border-t border-white/10 bg-navy/70 backdrop-blur">
                 <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-5 md:grid-cols-4 md:px-8">
-                    {features.map(({ icon: Icon, line1, line2 }) => (
-                        <li key={line1} className="flex items-center gap-3">
+                    {features.map(({ icon: Icon, key }) => (
+                        <li key={key} className="flex items-center gap-3">
                             <Icon className="shrink-0 text-xl text-gold" />
                             <span className="text-xs leading-tight text-white/90">
-                                {line1}
-                                <br />
-                                {line2}
+                                {t(`hero.features.${key}`)}
                             </span>
                         </li>
                     ))}
