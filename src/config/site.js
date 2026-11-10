@@ -2,7 +2,7 @@ export const SITE = {
     name: 'Dhana Tours',
     tagline: 'Your Trusted Travel Partner',
     googleRating: '5.0',
-    googleReviewsUrl: 'https://share.google/3AwkWn4QOnUu4gCjS',
+    googleReviewsUrl: 'https://maps.app.goo.gl/qx4Q4ifyZvTomEEs9?g_st=aw',
 
     // Country code + number, no "+" and no spaces. 
     whatsappNumber: '94775975689',
@@ -11,7 +11,7 @@ export const SITE = {
     phone: '+94 77 5975689',
     email: 'info@example.com',
     location: 'Weligama, Sri Lanka',
-    mapQuery: 'Weligama, Sri Lanka', // what Google Maps should show, e.g. 'Negombo, Sri Lanka'
+    mapQuery: 'Dhana Tours Weligama', // what Google Maps should show, e.g. 'Negombo, Sri Lanka'
 
     // Leave a link empty ('') to hide that icon in the footer
     socials: {
