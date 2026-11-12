@@ -1,8 +1,18 @@
+import { useTranslation } from 'react-i18next'
 import { FaCheckCircle, FaArrowRight } from 'react-icons/fa'
 import { whatsappLink } from '../config/site'
 
 function ServiceCard({ service }) {
-    const { title, icon: Icon, image, description, features, buttonLabel, message } = service
+    const { t } = useTranslation()
+    const { id, icon: Icon, image, message } = service
+
+    const title = t(`services.items.${id}.title`)
+    const description = t(`services.items.${id}.description`)
+    const buttonLabel = t(`services.items.${id}.button`)
+
+    // "returnObjects" gives back the whole list from the JSON file
+    const featureList = t(`services.items.${id}.features`, { returnObjects: true })
+    const features = Array.isArray(featureList) ? featureList : []
 
     return (
         <article className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/5">
@@ -26,6 +36,7 @@ function ServiceCard({ service }) {
             <div className="flex flex-1 flex-col p-5 pt-8">
                 <h3 className="text-lg font-bold text-navy">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-gray-600">{description}</p>
+
                 <ul className="mb-6 mt-4 space-y-2 border-t border-gray-100 pt-4">
                     {features.map((feature) => (
                         <li key={feature} className="flex items-start gap-2 text-sm text-gray-700">

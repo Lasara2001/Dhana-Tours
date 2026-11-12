@@ -23,5 +23,209 @@
             "packages": "Customizable Tour Packages",
             "insured": "Fully Insured & SLTDA Certified"
         }
+    },
+    "services": {
+        "tag": "Our Services",
+        "title": "How We Can Help You",
+        "subtitle": "Whether you need a punctual arrival greeting, a multi-day private tour or a personal driver at your disposal, each journey is executed with quiet discretion and refinement.",
+        "items": {
+            "airport": {
+                "title": "Airport Transfers",
+                "description": "Direct greeting at Bandaranaike International Airport with a personalised name board. Flight delay tracking, ice-cold bottled water and plush leather air-conditioned seating.",
+                "features": [
+                    "Flight tracking with complimentary waiting time",
+                    "Direct express highway tolls & parking included",
+                    "Luggage assistance & cold refreshment towels"
+                ],
+                "button": "Reserve Airport Chauffeur"
+            },
+            "round-tours": {
+                "title": "Private Round Tours",
+                "description": "Immersive, unhurried journeys through the Cultural Triangle, mist-capped tea estates, highland railways and wildlife sanctuaries, with a local driver-companion.",
+                "features": [
+                    "Bespoke daily itineraries tailored to your rhythm",
+                    "Handpicked boutique viewpoints & photo spots",
+                    "Train ticket reservations & safari jeep sync"
+                ],
+                "button": "Plan My Round Tour"
+            },
+            "car-rental": {
+                "title": "Car Rental with Private Driver",
+                "description": "Enjoy complete freedom without the stress of navigating mountain roads. Hire an executive vehicle with a professional chauffeur for 5, 7 or 14+ days.",
+                "features": [
+                    "Unlimited flexibility to alter stops daily",
+                    "Driver food, lodging & fuel included",
+                    "English or Russian speaking chauffeur choice"
+                ],
+                "button": "Hire a Car with Driver"
+            },
+            "day-tours": {
+                "title": "Day Tours",
+                "description": "Short on time? Enjoy a comfortable full-day trip to the best sights near you and be back at your hotel by evening.",
+                "features": [
+                    "Pick-up and drop-off at your hotel",
+                    "Flexible stops for photos and meals",
+                    "Popular routes or your own choice"
+                ],
+                "button": "Book a Day Tour"
+            },
+            "city-tours": {
+                "title": "City Tours",
+                "description": "Explore the history, markets and landmarks of Colombo, Kandy or Galle with a friendly local who knows the best places.",
+                "features": [
+                    "Temples, forts, museums and local markets",
+                    "Half-day or full-day options",
+                    "Local tips on food and shopping"
+                ],
+                "button": "Book a City Tour"
+            },
+            "custom-itineraries": {
+                "title": "Customized Itineraries",
+                "description": "Tell us your dates, interests and budget, and we will design a travel plan made just for you.",
+                "features": [
+                    "Plan built around your interests",
+                    "Hotel and route suggestions",
+                    "Easy changes before and during the trip"
+                ],
+                "button": "Design My Trip"
+            }
+        }
+    },
+    "packages": {
+        "tag": "Tour Packages",
+        "title": "Popular Journeys Across Sri Lanka",
+        "subtitle": "Handpicked tours for first-time visitors and returning travelers. Every tour can be customized to your dates, interests and group size.",
+        "contactForPrice": "Contact for price",
+        "enquire": "Enquire",
+        "footerNote": "Don’t see your ideal trip? Contact us and we will design a custom plan for you.",
+        "days_one": "{{count}} Day",
+        "days_other": "{{count}} Days",
+        "items": {
+            "sigiriya-dambulla": {
+                "title": "Sigiriya & Dambulla",
+                "description": "Climb the ancient Lion Rock fortress and explore the golden cave temple in comfort.",
+                "highlights": [
+                    "Sigiriya Rock",
+                    "Dambulla Cave Temple",
+                    "Village lunch"
+                ]
+            },
+            "kandy": {
+                "title": "Kandy Cultural Tour",
+                "description": "Visit the hill capital, its sacred temple and peaceful gardens, and enjoy a traditional dance show.",
+                "highlights": [
+                    "Temple of the Tooth",
+                    "Kandy Lake",
+                    "Botanical Gardens"
+                ]
+            },
+            "ella-nuwara-eliya": {
+                "title": "Ella & Nuwara Eliya Hill Country",
+                "description": "Cool mountain air, endless tea plantations, waterfalls and the famous scenic train ride.",
+                "highlights": [
+                    "Nine Arch Bridge",
+                    "Tea plantation visit",
+                    "Little Adam’s Peak"
+                ]
+            },
+            "galle-south-coast": {
+                "title": "Galle Fort & Southern Coast",
+                "description": "Walk the old Dutch fort, relax on golden beaches and enjoy the best of the southern coast.",
+                "highlights": [
+                    "Galle Fort",
+                    "Unawatuna Beach",
+                    "Turtle hatchery"
+                ]
+            },
+            "yala-safari": {
+                "title": "Yala Safari Adventure",
+                "description": "Spot leopards, elephants and many birds on a jeep safari in Sri Lanka’s best-known national park.",
+                "highlights": [
+                    "Jeep safari",
+                    "Leopard spotting",
+                    "Wildlife photography"
+                ]
+            },
+            "classic-sri-lanka": {
+                "title": "Classic Sri Lanka",
+                "description": "The best of the island in one trip: ancient cities, tea country, wildlife and the southern beaches.",
+                "highlights": [
+                    "Cultural Triangle",
+                    "Kandy & Ella",
+                    "South coast beaches"
+                ]
+            }
+        }
+    },
+    "about": {
+        "photoAlt": "Dhana Tours driver and vehicle",
+        "googleReviews": "Google Reviews",
+        "licensed": "Licensed & Insured",
+        "title": "Meet Your Dedicated Driver-Guide",
+        "paragraph": "We are a family-owned Sri Lankan tour operator based in Weligama, Sri Lanka, specializing in personalized private tours and transfers. My name is Dhananjaya (Dhana) and I am a licensed driver with over 10 years of experience helping travelers from around the world explore the island safely and comfortably.",
+        "stats": {
+            "safety": "Accident-Free Safety",
+            "experience": "Years of Island Experience"
+        },
+        "whyTitle": "Why Travelers Choose Us",
+        "features": {
+            "driver": {
+                "title": "Experienced & Licensed Driver",
+                "text": "Years of professional experience driving across Sri Lanka, fully certified for tourism."
+            },
+            "itineraries": {
+                "title": "Customized Itineraries",
+                "text": "Every trip is tailored to your pace, preferences and budget. No rush, no stress."
+            },
+            "vehicles": {
+                "title": "Safe & Insured Vehicles",
+                "text": "Air-conditioned, modern cars and vans regularly inspected for your safety and comfort."
+            },
+            "support": {
+                "title": "24/7 WhatsApp Support",
+                "text": "We stay in touch before and throughout your journey to answer questions and help."
+            },
+            "gems": {
+                "title": "Local Hidden Gems",
+                "text": "Beyond the tourist spots - discover local food, quiet beaches and authentic culture."
+            },
+            "direct": {
+                "title": "Direct Driver Booking",
+                "text": "Deal directly with us, not a middleman agency. Clear communication and fair prices."
+            }
+        }
+    },
+    "reviews": {
+        "tag": "Reviews",
+        "title": "What Our Guests Say",
+        "googleReviews": "Google Reviews",
+        "starsLabel": "{{rating}} out of 5 stars",
+        "readMore": "Read more",
+        "showLess": "Show less",
+        "translatedFrom": "Translated from {{language}}",
+        "languages": {
+            "Russian": "Russian"
+        },
+        "seeAll": "See all reviews on Google",
+        "write": "Write a review",
+        "emptyText": "Guest reviews will appear here soon. Traveled with us? We would love to hear about your trip.",
+        "share": "Share your experience"
+    },
+    "contact": {
+        "tag": "Contact",
+        "title": "Plan Your Trip With Us",
+        "subtitle": "Questions about a tour, a transfer or a custom plan? Message us any time and we will get back to you.",
+        "whatsappLabel": "WhatsApp",
+        "whatsappValue": "Start a chat",
+        "phone": "Phone",
+        "email": "Email",
+        "location": "Location",
+        "locationValue": "Weligama, Sri Lanka",
+        "requestBooking": "Request a Booking",
+        "mapTitle": "Dhana Tours location map"
+    },
+    "footer": {
+        "quickLinks": "Quick Links",
+        "copyright": "© {{year}} {{name}}. All rights reserved."
     }
 }
