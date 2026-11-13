@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaStar, FaQuoteLeft, FaWhatsapp, FaGoogle } from 'react-icons/fa'
 import { reviews } from '../data/reviews'
 import { SITE, whatsappLink } from '../config/site'
@@ -6,8 +7,10 @@ import { SITE, whatsappLink } from '../config/site'
 const LONG_TEXT = 260 // reviews longer than this get a "Read more" button
 
 function Stars({ rating }) {
+    const { t } = useTranslation()
+
     return (
-        <div className="flex gap-1" aria-label={`${rating} out of 5 stars`}>
+        <div className="flex gap-1" aria-label={t('reviews.starsLabel', { rating })}>
             {[1, 2, 3, 4, 5].map((n) => (
                 <FaStar key={n} className={n <= rating ? 'text-gold' : 'text-white/20'} />
             ))}
@@ -16,8 +19,14 @@ function Stars({ rating }) {
 }
 
 function ReviewCard({ review }) {
+    const { t, i18n } = useTranslation()
     const [expanded, setExpanded] = useState(false)
-    const isLong = review.text.length > LONG_TEXT
+
+    // Russian visitors see the original Russian text when we have it
+    const showOriginal = i18n.resolvedLanguage === 'ru' && review.textRu
+    const text = showOriginal ? review.textRu : review.text
+    const isTranslated = Boolean(review.translatedFrom) && !showOriginal
+    const isLong = text.length > LONG_TEXT
 
     return (
         <article className="flex flex-col rounded-2xl border border-white/10 bg-navy-light p-6">
@@ -31,7 +40,7 @@ function ReviewCard({ review }) {
                     className={`mt-3 whitespace-pre-line text-sm leading-relaxed text-white/85 ${isLong && !expanded ? 'line-clamp-6' : ''
                         }`}
                 >
-                    {review.text}
+                    {text}
                 </p>
 
                 {isLong && (
@@ -41,13 +50,17 @@ function ReviewCard({ review }) {
                         aria-expanded={expanded}
                         className="mt-2 text-xs font-semibold text-gold hover:underline"
                     >
-                        {expanded ? 'Show less' : 'Read more'}
+                        {expanded ? t('reviews.showLess') : t('reviews.readMore')}
                     </button>
                 )}
 
-                {review.translatedFrom && (
+                {isTranslated && (
                     <p className="mt-2 text-xs italic text-white/50">
-                        Translated from {review.translatedFrom}
+                        {t('reviews.translatedFrom', {
+                            language: t(`reviews.languages.${review.translatedFrom}`, {
+                                defaultValue: review.translatedFrom,
+                            }),
+                        })}
                     </p>
                 )}
             </div>
@@ -69,6 +82,9 @@ function ReviewCard({ review }) {
 }
 
 function Reviews() {
+    const { t } = useTranslation()
+
+    // The message that reaches the business stays in English
     const shareLink = whatsappLink(
         'Hello Dhana Tours, I would like to share my feedback about my trip.'
     )
@@ -79,11 +95,11 @@ function Reviews() {
                 <div className="text-center">
                     <p className="flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
                         <span className="h-px w-8 bg-gold" />
-                        Reviews
+                        {t('reviews.tag')}
                         <span className="h-px w-8 bg-gold" />
                     </p>
                     <h2 className="mt-4 font-heading text-3xl font-bold md:text-5xl">
-                        What Our Guests Say
+                        {t('reviews.title')}
                     </h2>
 
                     {/* Google summary bar */}
@@ -92,7 +108,7 @@ function Reviews() {
                             <FaGoogle className="text-gold" />
                             <span className="text-lg font-bold">{SITE.googleRating}</span>
                             <Stars rating={Math.round(Number(SITE.googleRating))} />
-                            <span className="text-sm text-white/70">Google Reviews</span>
+                            <span className="text-sm text-white/70">{t('reviews.googleReviews')}</span>
                         </div>
                     )}
                 </div>
@@ -115,7 +131,7 @@ function Reviews() {
                                     className="inline-flex items-center gap-2 rounded-xl border border-gold px-6 py-3 text-sm font-semibold transition-colors hover:bg-gold hover:text-navy"
                                 >
                                     <FaGoogle />
-                                    See all reviews on Google
+                                    {t('reviews.seeAll')}
                                 </a>
                             )}
                             {SITE.googleWriteReviewUrl && (
@@ -126,7 +142,7 @@ function Reviews() {
                                     className="inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
                                 >
                                     <FaStar />
-                                    Write a review
+                                    {t('reviews.write')}
                                 </a>
                             )}
                         </div>
@@ -134,10 +150,7 @@ function Reviews() {
                 ) : (
                     // Shown when there are no reviews yet
                     <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-white/10 bg-navy-light p-8 text-center">
-                        <p className="text-white/85">
-                            Guest reviews will appear here soon. Traveled with us? We would love to
-                            hear about your trip.
-                        </p>
+                        <p className="text-white/85">{t('reviews.emptyText')}</p>
                         <a
                             href={shareLink}
                             target="_blank"
@@ -145,7 +158,7 @@ function Reviews() {
                             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-gold-light"
                         >
                             <FaWhatsapp className="text-lg" />
-                            Share your experience
+                            {t('reviews.share')}
                         </a>
                     </div>
                 )}
