@@ -1,13 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import { FaFacebookF, FaInstagram, FaTripadvisor, FaTelegramPlane } from 'react-icons/fa'
 import { SITE } from '../config/site'
 
+// "key" points to nav.home, nav.services ... (same texts as the Navbar)
 const quickLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'Our Services', href: '#services' },
-    { label: 'Tour Packages', href: '#packages' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Reviews', href: '#reviews' },
-    { label: 'Contact', href: '#contact' },
+    { key: 'home', href: '#home' },
+    { key: 'services', href: '#services' },
+    { key: 'packages', href: '#packages' },
+    { key: 'about', href: '#about' },
+    { key: 'reviews', href: '#reviews' },
+    { key: 'contact', href: '#contact' },
 ]
 
 const socialIcons = {
@@ -34,6 +36,8 @@ function formatSocialUrl(key, url) {
 }
 
 function Footer() {
+    const { t } = useTranslation()
+
     // Only show social icons that have a link
     const socials = Object.entries(SITE.socials).filter(([, url]) => url)
 
@@ -52,7 +56,7 @@ function Footer() {
                             {SITE.name.toUpperCase()}
                         </span>
                     </a>
-                    <p className="mt-4 text-sm text-white/70">{SITE.tagline}</p>
+                    <p className="mt-4 text-sm text-white/70">{t('hero.tagline')}</p>
 
                     {socials.length > 0 && (
                         <div className="mt-5 flex gap-3">
@@ -78,12 +82,12 @@ function Footer() {
 
                 {/* Quick links */}
                 <div>
-                    <h3 className="font-semibold text-gold">Quick Links</h3>
+                    <h3 className="font-semibold text-gold">{t('footer.quickLinks')}</h3>
                     <ul className="mt-4 space-y-2 text-sm text-white/80">
                         {quickLinks.map((link) => (
                             <li key={link.href}>
                                 <a href={link.href} className="hover:text-gold">
-                                    {link.label}
+                                    {t(`nav.${link.key}`)}
                                 </a>
                             </li>
                         ))}
@@ -92,17 +96,17 @@ function Footer() {
 
                 {/* Contact */}
                 <div>
-                    <h3 className="font-semibold text-gold">Contact</h3>
+                    <h3 className="font-semibold text-gold">{t('nav.contact')}</h3>
                     <ul className="mt-4 space-y-2 text-sm text-white/80">
                         <li>{SITE.phone}</li>
                         <li>{SITE.email}</li>
-                        <li>{SITE.location}</li>
+                        <li>{t('contact.locationValue')}</li>
                     </ul>
                 </div>
             </div>
 
             <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">
-                © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+                {t('footer.copyright', { year: new Date().getFullYear(), name: SITE.name })}
             </div>
         </footer>
     )

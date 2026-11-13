@@ -1,21 +1,30 @@
+import { useTranslation } from 'react-i18next'
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 import { SITE, whatsappLink } from '../config/site'
 
 function Contact({ onBook }) {
+    const { t } = useTranslation()
+
     // "tel:" links only accept digits and "+"
     const phoneHref = `tel:${SITE.phone.replace(/[^+\d]/g, '')}`
 
     const items = [
         {
             icon: FaWhatsapp,
-            label: 'WhatsApp',
-            value: 'Start a chat',
+            label: t('contact.whatsappLabel'),
+            value: t('contact.whatsappValue'),
+            // This message goes to the business, so it stays in English
             href: whatsappLink('Hello Dhana Tours, I have a question.'),
             external: true,
         },
-        { icon: FaPhoneAlt, label: 'Phone', value: SITE.phone, href: phoneHref },
-        { icon: FaEnvelope, label: 'Email', value: SITE.email, href: `mailto:${SITE.email}` },
-        { icon: FaMapMarkerAlt, label: 'Location', value: SITE.location },
+        { icon: FaPhoneAlt, label: t('contact.phone'), value: SITE.phone, href: phoneHref },
+        {
+            icon: FaEnvelope,
+            label: t('contact.email'),
+            value: SITE.email,
+            href: `mailto:${SITE.email}`,
+        },
+        { icon: FaMapMarkerAlt, label: t('contact.location'), value: t('contact.locationValue') },
     ]
 
     return (
@@ -24,16 +33,13 @@ function Contact({ onBook }) {
                 <div className="text-center">
                     <p className="flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
                         <span className="h-px w-8 bg-gold-dark" />
-                        Contact
+                        {t('contact.tag')}
                         <span className="h-px w-8 bg-gold-dark" />
                     </p>
                     <h2 className="mt-4 text-3xl font-bold text-brand-blue md:text-5xl">
-                        Plan Your Trip With Us
+                        {t('contact.title')}
                     </h2>
-                    <p className="mx-auto mt-5 max-w-2xl text-navy/80">
-                        Questions about a tour, a transfer or a custom plan? Message us any time and
-                        we will get back to you.
-                    </p>
+                    <p className="mx-auto mt-5 max-w-2xl text-navy/80">{t('contact.subtitle')}</p>
                 </div>
 
                 <div className="mt-12 grid gap-8 lg:grid-cols-2">
@@ -77,14 +83,14 @@ function Contact({ onBook }) {
                             onClick={() => onBook('taxi')}
                             className="w-full rounded-xl bg-navy px-6 py-3.5 font-semibold text-white transition-colors hover:bg-navy-light"
                         >
-                            Request a Booking
+                            {t('contact.requestBooking')}
                         </button>
                     </div>
 
                     {/* Map */}
                     <div className="h-80 overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5 lg:h-auto lg:min-h-[24rem]">
                         <iframe
-                            title="Dhana Tours location map"
+                            title={t('contact.mapTitle')}
                             src={`https://www.google.com/maps?q=${encodeURIComponent(SITE.mapQuery)}&output=embed`}
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
